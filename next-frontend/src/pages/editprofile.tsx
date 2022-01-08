@@ -38,16 +38,8 @@ const editprofile = (props: Props) => {
         display={"flex"}
         justifyContent={"center"}
         flexDirection={"row"}
-        border={"1px solid black"}
       >
-        <Box
-          // border={"1px solid red"}
-          w={"70vw"}
-          h={"80vh"}
-          // display={"flex"}
-          // justifyContent={"center"}
-          // flexDirection={"column"}
-        >
+        <Box w={"70vw"} h={"80vh"}>
           <FormControl onSubmit={submitHandler}>
             <FormLabel htmlFor="name" pt={"8vh"}>
               Name

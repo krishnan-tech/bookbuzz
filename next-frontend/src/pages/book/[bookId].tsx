@@ -6,10 +6,12 @@ import {
   Flex,
   Heading,
   HStack,
-  Image,
+  // Image,
   Tag,
   Text,
 } from "@chakra-ui/react";
+import Image from "next/image";
+
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
@@ -19,6 +21,7 @@ import Reviews from "../../components/books/Reviews";
 import { Container } from "../../components/Container";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
+import htwaip from '../../images/htwaip.jpg'
 
 interface Props {}
 
@@ -81,9 +84,6 @@ export const SingleBook: React.FC<Props> = ({}) => {
     }
 
     setAdded(true);
-    // setAdded((added) => {
-    //   return !added;
-    // });
   };
 
   useEffect(() => {
@@ -116,11 +116,12 @@ export const SingleBook: React.FC<Props> = ({}) => {
               >
                 <Center mb={"2vh"}>
                   <Image
-                    boxShadow={"lg"}
                     boxSize={{ base: "50vw", md: "15vw", sm: "20vw" }}
+                    width={"200vw"}
+                    height={"280vh"}
                     objectFit="cover"
-                    src="https://bit.ly/dan-abramov"
-                    alt="Dan Abramov"
+                    src={htwaip}
+                    alt="Book Image"
                   />
                 </Center>
                 <Checkbox

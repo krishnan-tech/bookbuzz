@@ -1,4 +1,4 @@
-import { Box, Button, Text, Textarea, useTooltip } from "@chakra-ui/react";
+import { Box, Button, Text, Textarea } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import React from "react";

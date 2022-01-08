@@ -30,7 +30,6 @@ export const Home = () => {
       <ReadingBoy />
       <Middle />
       <Box
-        border={"3px solid yellow"}
         overflow={"hidden"}
         display={"flex"}
         justifyContent={"space-around"}

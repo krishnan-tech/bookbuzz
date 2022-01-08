@@ -8,7 +8,6 @@ const light_yellow = { color: "#f2ce00", display: "inline" };
 const Middle = (props: Props) => {
   return (
     <Box
-      border={"2px solid red"}
       display={"flex"}
       h={"fit-content"}
       minH={"20vh"}
@@ -17,7 +16,8 @@ const Middle = (props: Props) => {
       textAlign={"center"}
       m={"5vh 0"}
       p={"0 10%"}
-    >
+      boxShadow={"xl"}
+      >
       <Heading
         fontSize={{ base: "25px", md: "30px", lg: "35px" }}
         style={light_yellow}

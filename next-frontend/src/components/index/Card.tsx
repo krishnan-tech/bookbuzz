@@ -1,7 +1,7 @@
 import { Box, Center, useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
-import book_cover_photo from "../../images/book_cover_photo.jpg";
+import htwaip from "../../images/htwaip.jpg";
 
 interface IData {
   _id: string;
@@ -15,7 +15,6 @@ const ProductAddToCard = ({ data }: { data: IData }) => {
     <Box
       float={"left"}
       w={["70vw", "40vw", "20vw"]}
-      border={"3px solid green"}
       display={"flex"}
       justifyContent={"center"}
     >
@@ -26,11 +25,10 @@ const ProductAddToCard = ({ data }: { data: IData }) => {
         rounded="lg"
         shadow="xl"
         margin={"2vh 3vh 2vh 3vh"}
-        border={"2px solid orange"}
       >
         <Box p={5} pb={3}>
           <Link href={`/book/${data._id}`}>
-            <Image src={book_cover_photo} alt={`Picture of ${data.name}`} />
+            <Image src={htwaip} alt={`Picture of ${data.name}`} />
           </Link>
         </Box>
 

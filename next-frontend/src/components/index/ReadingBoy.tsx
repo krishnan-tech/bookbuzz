@@ -11,7 +11,7 @@ const yellow = { color: "#f2ce00", display: "inline" };
 export const ReadingBoy = (props: Props) => {
   return (
     <Flex justifyContent={"space-around"}>
-      <Box maxW="105rem" border={"3px solid green"} display={{ lg: "flex" }}>
+      <Box maxW="105rem" display={{ lg: "flex" }}>
         <Flex
           alignContent={"center"}
           justifyContent={"center"}

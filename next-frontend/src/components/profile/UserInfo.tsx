@@ -33,7 +33,6 @@ const UserInfo = (props: Props) => {
 
   return (
     <Box
-      border={"2px solid pink"}
       display={"flex"}
       justifyContent={"center"}
       flexDirection={"column"}

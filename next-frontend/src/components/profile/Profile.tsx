@@ -9,13 +9,12 @@ interface Props {
 const Profile: React.FC<Props> = ({ children }) => (
   <Flex
     m={"4vh 0 4vh 0"}
-    border={"2px solid red"}
     direction={{ base: "column", lg: "row" }}
   >
-    <Box border={"2px solid green"} minW={"30%"}>
+    <Box minW={"30%"}>
       <ProfileSideBar />
     </Box>
-    <Box border={"2px solid yellow"} w={"full"}>
+    <Box w={"full"}>
       {children}
     </Box>
   </Flex>

@@ -14,7 +14,6 @@ export const Container = (props: FlexProps) => {
       bg={bgColor[colorMode]}
       color={color[colorMode]}
       p={"0 3vw"}
-      // border={"3px solid pink"}
       {...props}
     />
   );

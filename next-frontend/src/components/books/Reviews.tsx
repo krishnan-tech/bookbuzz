@@ -41,7 +41,7 @@ const Reviews = (props: Props) => {
   }, [bookId]);
 
   return (
-    <Box border={"1px solid green"} width={"100%"} p={"2vw"}>
+    <Box width={"100%"} p={"2vw"}>
       <Heading as="u">FRIEND REVIEWS</Heading>
       <Box m={"2vw 0"}>
         <PostReviewForm />

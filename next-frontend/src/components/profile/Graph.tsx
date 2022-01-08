@@ -24,7 +24,6 @@ const TOP = (props: any) => {
   return (
     <Box
       boxShadow="lg"
-      border={"1px solid gray"}
       width={{ base: "100%", md: "16vw" }}
       height={"7vh"}
       textAlign={"center"}
@@ -162,7 +161,6 @@ const Graph = (props: Props) => {
     <Profile>
       <Center py={6}>
         <Box
-          // border={"2px solid green"}
           display={"flex"}
           flexDirection={"column"}
           justifyContent={"space-between"}
@@ -176,7 +174,6 @@ const Graph = (props: Props) => {
           <Stack
             justifyContent={"space-around"}
             height={"100%"}
-            // border={"1px solid orange"}
           >
             <Box>
               <Text
@@ -229,7 +226,6 @@ const Graph = (props: Props) => {
 
             {/* Graph */}
             <Box
-              // border={"1px solid yellow"}
               bg={"gray.100"}
               mt={-6}
               minH={"500px"}
@@ -239,7 +235,6 @@ const Graph = (props: Props) => {
               shadow={"xl"}
               mb={6}
               pos={"relative"}
-              // border="1px solid black"
             >
               <Line
                 // @ts-ignore

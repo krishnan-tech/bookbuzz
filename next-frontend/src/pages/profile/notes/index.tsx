@@ -59,7 +59,6 @@ const notes = (props: Props) => {
       <Container>
         <Box
           m={"1vw 4vh"}
-          // border={"1px solid red"}
           display={"flex"}
           justifyContent={"center"}
           flexWrap={"wrap"}
@@ -67,7 +66,6 @@ const notes = (props: Props) => {
           {[1, 2, 3, 4, 5, 6].map((index) => (
             <Box
               key={index}
-              border={"1px solid black"}
               width={"20vw"}
               height={"40vh"}
               m={"1vw"}
@@ -97,7 +95,6 @@ const notes = (props: Props) => {
             </Box>
           ))}
           <Box
-            border={"1px solid black"}
             width={"20vw"}
             height={"40vh"}
             m={"1vw"}
