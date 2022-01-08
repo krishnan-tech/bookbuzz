@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Container } from "../components/Container";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import Footer from "../components/Footer";
-import { Home } from "../components/Home";
+import { Home } from "../components/index/Home";
 import NavBar from "../components/NavBar";
 import { SampleComponent } from "../components/SampleComponent";
 
