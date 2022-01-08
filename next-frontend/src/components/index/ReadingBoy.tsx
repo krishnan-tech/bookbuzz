@@ -32,8 +32,7 @@ export const ReadingBoy = (props: Props) => {
           <Box className={styles.circle2}></Box>
           <Box className={styles.circle4}></Box>
           <Text fontSize="xl" mt="2vh">
-            Paystack helps businesses in Africa get paid by anyone, anywhere in
-            the world
+            That's the things about books. They let you travel without moving your feet.
           </Text>
         </Flex>
         <Box display={"block"} ml={"auto"} mr={"auto"} w={"80%"}>
