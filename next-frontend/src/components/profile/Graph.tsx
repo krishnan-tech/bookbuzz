@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Text,
@@ -6,11 +6,18 @@ import {
   Stack,
   useColorModeValue,
   SimpleGrid,
+  FormControl,
+  FormLabel,
+  Input,
+  NumberInput,
+  HStack,
+  Button,
 } from "@chakra-ui/react";
 import Profile from "./Profile";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
+import { profile_api, set_book_page_api } from "../../allApi";
 Chart.register(CategoryScale);
 
 const TOP = (props: any) => {
@@ -81,15 +88,63 @@ const optionsBar = {
 };
 const Graph = (props: Props) => {
   const [no_of_days, set_no_of_days] = useState(0);
+  const [no_of_max_days, set_no_of_max_days] = useState(0);
   const [no_of_friends, set_no_of_friends] = useState(0);
+  const [isLogin, setIsLogin] = useState(false);
+  const [currReading, setCurrReading] = useState(null)
+
+  const [pages, set_pages] = useState(0);
+
+  let token = null;
+  let userId = null;
+  let user_profile = null;
+  useEffect(() => {
+    async function fetchMyAPI() {
+      token = localStorage.getItem("token");
+      userId = localStorage.getItem("userId");
+      if (token != null) {
+        const body = {
+          token,
+          userId,
+        };
+        user_profile = await profile_api(body);
+        console.log(user_profile);
+        setIsLogin(true);
+        set_no_of_days(user_profile.data.streak);
+        set_no_of_max_days(user_profile.data.max_streak);
+        set_no_of_friends(user_profile.data.friends.length);
+
+        setCurrReading(user_profile.data.currentReading);
+        console.log("user-->", user_profile.data.currentReading)
+      }
+    }
+    fetchMyAPI();
+  }, []);
+
+  const SubmitPages = async (event) => {
+    event.preventDefault();
+
+    let bookId;
+    console.log("------", user_profile)
+    console.log("=======", currReading[0])
+    if(currReading != null)
+      bookId = currReading[0];
+    else
+      alert("First add book to current reading.")
+    const user = await set_book_page_api({pages, bookId});// as CheckAuth;
+
+    console.log(user);
+    set_pages(0);
+  };
 
   return (
     <Profile>
       <Center py={6}>
         <Box
-          border={"2px solid green"}
+          // border={"2px solid green"}
           display={"flex"}
           flexDirection={"column"}
+          justifyContent={"space-between"}
           w={"85%"}
           bg={useColorModeValue("white", "gray.900")}
           boxShadow={"2xl"}
@@ -97,7 +152,11 @@ const Graph = (props: Props) => {
           p={6}
           overflow={"hidden"}
         >
-          <Stack justifyContent={"space-around"} height={"90vh"}>
+          <Stack
+            justifyContent={"space-around"}
+            height={"100%"}
+            // border={"1px solid orange"}
+          >
             <Box>
               <Text
                 color={"green.500"}
@@ -122,13 +181,35 @@ const Graph = (props: Props) => {
                 rounded="lg"
               >
                 <TOP>{no_of_days} of Days Streek</TOP>
+                <TOP>{no_of_max_days} of Max Days Streek</TOP>
                 <TOP>{no_of_friends} of Friends</TOP>
-                <TOP>abc</TOP>
               </SimpleGrid>
             </Box>
-            {/* Graph */}
 
+            <Box p={"2vw"}>
+              <FormControl>
+                <FormLabel htmlFor="amount">
+                  How many pages did you read today ?
+                </FormLabel>
+                <HStack>
+                  <NumberInput max={500} min={0}>
+                    <Input
+                      id="amount"
+                      onChange={(e) =>
+                        set_pages(Number(e.target.value))
+                      }
+                    />
+                  </NumberInput>
+                  <Button colorScheme="teal" size="md" onClick={SubmitPages}>
+                    Submit
+                  </Button>
+                </HStack>
+              </FormControl>
+            </Box>
+
+            {/* Graph */}
             <Box
+              // border={"1px solid yellow"}
               bg={"gray.100"}
               mt={-6}
               minH={"500px"}

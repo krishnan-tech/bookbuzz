@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React from "react";
 import { Container } from "../components/Container";
+import Footer from "../components/Footer";
 import Nav from "../components/NavBar";
 import Graph from "../components/profile/Graph";
 
@@ -13,6 +14,7 @@ export const profile: React.FC<profileProps> = ({}) => {
       <Container>
         <Graph />
       </Container>
+      <Footer />
     </Box>
   );
 };

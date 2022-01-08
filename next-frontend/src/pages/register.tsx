@@ -18,11 +18,33 @@ import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import React from "react";
 import NavBar from "../components/NavBar";
+import { register_api } from "../allApi";
 
 interface registerProps {}
 
 export const register: React.FC<registerProps> = ({}) => {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
+    const body = {
+      username,
+      email,
+      password,
+    };
+    const user = await register_api(body);
+
+    if (user.error) {
+      alert(user.error);
+    } else {
+      alert("Your Account Created. Kindly Login.");
+    }
+  };
+
   return (
     <Box>
       <NavBar />
@@ -31,7 +53,7 @@ export const register: React.FC<registerProps> = ({}) => {
         justify={"center"}
         bg={useColorModeValue("gray.50", "gray.800")}
       >
-        <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+        <Stack spacing={8} mx={"auto"} width={"lg"} py={12} px={6}>
           <Stack align={"center"}>
             <Heading fontSize={"4xl"} textAlign={"center"}>
               Sign up
@@ -47,28 +69,27 @@ export const register: React.FC<registerProps> = ({}) => {
             p={8}
           >
             <Stack spacing={4}>
-              <HStack>
-                <Box>
-                  <FormControl id="firstName" isRequired>
-                    <FormLabel>First Name</FormLabel>
-                    <Input type="text" />
-                  </FormControl>
-                </Box>
-                <Box>
-                  <FormControl id="lastName">
-                    <FormLabel>Last Name</FormLabel>
-                    <Input type="text" />
-                  </FormControl>
-                </Box>
-              </HStack>
+              <FormControl id="username" isRequired>
+                <FormLabel>Username</FormLabel>
+                <Input
+                  type="username"
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </FormControl>
               <FormControl id="email" isRequired>
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </FormControl>
               <FormControl id="password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                  <Input type={showPassword ? "text" : "password"} />
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                   <InputRightElement h={"full"}>
                     <Button
                       variant={"ghost"}
@@ -90,13 +111,17 @@ export const register: React.FC<registerProps> = ({}) => {
                   _hover={{
                     bg: "blue.500",
                   }}
+                  onClick={submitHandler}
                 >
-                  Sign up
+                  <Link>Sign up</Link>
                 </Button>
               </Stack>
               <Stack pt={6}>
                 <Text align={"center"}>
-                  Already a user? <Link color={"blue.400"}>Login</Link>
+                  Already a user?{" "}
+                  <Link color={"blue.400"} href={"/login"}>
+                    Login
+                  </Link>
                 </Text>
               </Stack>
             </Stack>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Input,
   FormControl,
@@ -7,34 +7,42 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Formik, Form, Field } from "formik";
+import { post_review_api } from "../../allApi";
+import { useRouter } from "next/router";
 
 interface Props {}
 
 const PostReviewForm = (props: Props) => {
-  function validateName(value) {
-    let error;
-    if (!value) {
-      error = "First Enter Review & then hit submit button.";
-    } else {
-      error = "Your review submitted.";
-      console.log(value);
-    }
-    return error;
-  }
+  const router = useRouter();
+  const { bookId } = router.query;
 
   return (
     <Formik
       initialValues={{ review: "" }}
-      onSubmit={(values, actions) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
+      onSubmit={async (values, actions) => {
+          const token = localStorage.getItem("token");
+
+          const star = 3
+          if (token != null) {
+            let review = values.review;
+            const body = {
+              bookId,
+              review,
+              star
+            };
+            const user = await post_review_api(body);
+            console.log(user);
+            alert("Yor Review Submitted.")
+            router.reload()
+          } else {
+            alert("Login to post review.");
+          }
           actions.setSubmitting(false);
-        }, 1000);
       }}
     >
       {(props) => (
         <Form>
-          <Field name="review" validate={validateName}>
+          <Field name="review">
             {({ field, form }) => (
               <FormControl
                 isInvalid={form.errors.review && form.touched.review}

@@ -1,23 +1,51 @@
 import {
-  Flex,
   Box,
+  Button,
+  Flex,
   FormControl,
   FormLabel,
-  Input,
-  Checkbox,
-  Stack,
-  Link,
-  Button,
   Heading,
+  Input,
+  Link,
+  Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from "react";
+import Router from "next/router";
+import React, { useState } from "react";
+import { login_api } from "../allApi";
 import NavBar from "../components/NavBar";
+import { CheckAuth } from "../utils/checkAuth";
 
 interface loginProps {}
 
 export const login: React.FC<loginProps> = ({}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
+    const body = {
+      email,
+      password,
+    };
+    const user = (await login_api(body)) as CheckAuth; // as CheckAuth;
+
+    if (user.error) {
+      alert(user.error);
+    }
+
+    if (user.token) {
+      localStorage.setItem("token", user.token);
+      localStorage.setItem("userId", user.user._id);
+      setEmail("");
+      setPassword("");
+      // alert("Login successfull!!");
+      Router.push("/");
+    }
+  };
+
   return (
     <Box>
       <NavBar />
@@ -44,30 +72,42 @@ export const login: React.FC<loginProps> = ({}) => {
             <Stack spacing={4}>
               <FormControl id="email">
                 <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+                <Input
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </FormControl>
               <Stack spacing={10}>
-                <Stack
-                  direction={{ base: "column", sm: "row" }}
-                  align={"start"}
-                  justify={"space-between"}
-                >
-                  <Checkbox>Remember me</Checkbox>
-                  <Link color={"blue.400"}>Forgot password?</Link>
-                </Stack>
                 <Button
                   bg={"blue.400"}
                   color={"white"}
                   _hover={{
                     bg: "blue.500",
                   }}
+                  onClick={submitHandler}
                 >
                   Sign in
                 </Button>
+              </Stack>
+              <Stack>
+                <Link color={"blue.400"}>Forgot password?</Link>
+                <Text>
+                  Don't have an account ?{" "}
+                  <Link
+                    href={"/register"}
+                    color={"blue.400"}
+                    outline={"none !important"}
+                  >
+                    Register
+                  </Link>
+                </Text>
               </Stack>
             </Stack>
           </Box>

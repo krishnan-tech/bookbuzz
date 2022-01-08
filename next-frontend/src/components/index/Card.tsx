@@ -1,18 +1,16 @@
 import { Box, Center, useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import book_cover_photo from "../../images/book_cover_photo.jpg";
 
-const data = {
-  isNew: true,
-  imageURL: book_cover_photo,
-  bookName: "Book Name",
-  authorName: "Author Name",
-  price: 4.5,
-  rating: 4.2,
-  numReviews: 34,
-};
+interface IData {
+  _id: string;
+  imageURL: string;
+  name: string;
+  author: string;
+}
 
-const ProductAddToCart = () => {
+const ProductAddToCard = ({ data }: { data: IData }) => {
   return (
     <Box
       float={"left"}
@@ -31,7 +29,9 @@ const ProductAddToCart = () => {
         border={"2px solid orange"}
       >
         <Box p={5} pb={3}>
-          <Image src={data.imageURL} alt={`Picture of ${data.bookName}`} />
+          <Link href={`/book/${data._id}`}>
+            <Image src={book_cover_photo} alt={`Picture of ${data.name}`} />
+          </Link>
         </Box>
 
         <Box p={4} pt={0}>
@@ -43,7 +43,7 @@ const ProductAddToCart = () => {
               lineHeight="tight"
               isTruncated
             >
-              {data.bookName}
+              {data.name}
             </Box>
           </Center>
 
@@ -55,7 +55,7 @@ const ProductAddToCart = () => {
               lineHeight="tight"
               isTruncated
             >
-              {data.authorName}
+              {data.author}
             </Box>
           </Center>
         </Box>
@@ -64,4 +64,4 @@ const ProductAddToCart = () => {
   );
 };
 
-export default ProductAddToCart;
+export default ProductAddToCard;

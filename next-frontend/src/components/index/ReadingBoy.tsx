@@ -6,6 +6,8 @@ import final from "../../images/final.png";
 
 interface Props {}
 
+const yellow = { color: "#f2ce00", display: "inline" };
+
 export const ReadingBoy = (props: Props) => {
   return (
     <Flex justifyContent={"space-around"}>
@@ -22,9 +24,8 @@ export const ReadingBoy = (props: Props) => {
         >
           <Heading fontSize="5xl">
             <Text>
-              <p style={{ color: "#f2ce00", display: "inline" }}>Books</p> are a{" "}
-              <p style={{ color: "#f2ce00", display: "inline" }}>uniquely</p>{" "}
-              portable magic.
+              <Text style={yellow}>Books</Text> are a{" "}
+              <Text style={yellow}>uniquely</Text> portable magic.
             </Text>
           </Heading>
           <Box className={styles.circle1}></Box>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Text,
@@ -17,6 +17,7 @@ import NavBar from "../components/NavBar";
 import Reviews from "../components/books/Reviews";
 import Footer from "../components/Footer";
 import Chat from "../components/books/Chat";
+import { get_book_details_api } from "../allApi";
 
 interface Props {}
 
@@ -30,6 +31,7 @@ interface RatingProps {
   numReviews: number;
 }
 
+// For calculating rating star
 function Rating({ rating, numReviews }: RatingProps) {
   return (
     <Box d="flex" alignItems="center">
@@ -60,15 +62,38 @@ function Rating({ rating, numReviews }: RatingProps) {
 
 const books = (props: Props) => {
   const [added, setAdded] = useState(false);
+  const [bookName, setBookName] = useState("BookName");
+  const [bookDescription, setBookDescription] = useState("");
+  const [author, setAuthor] = useState("Author");
+  const [rating, setRating] = useState("");
+  const [tags, setTags] = useState(["life", "insparation", "study"]);
 
   const handleAdded = (e) => {
     e.preventDefault();
-    // console.log(added);
     setAdded((added) => {
       return !added;
     });
-    // console.log(added);
   };
+
+  useEffect(() => {
+    let user = null;
+    let bookId = null;
+
+    async function fetchMyAPI() {
+      const body = {
+        bookId,
+      };
+      user = await get_book_details_api(body);
+      console.log(user);
+      setBookName(user.data.name);
+      // setBookDescription(user.data.description);
+      setAuthor(user.data.author);
+      user.data.review.forEach((tag) =>
+        setTags((previousState) => [...previousState, tag])
+      );
+    }
+    fetchMyAPI();
+  }, []);
 
   return (
     <Box>
@@ -124,8 +149,8 @@ const books = (props: Props) => {
               boxShadow={"base"}
             >
               <Box>
-                <Heading size={"lg"}>Dark Whispers</Heading>
-                <Text size={"md"}>by Helen Harper</Text>
+                <Heading size={"lg"}>{bookName}</Heading>
+                <Text size={"md"}>by {author}</Text>
               </Box>
               <Box mt={"2vh"}>
                 <Text fontSize={"lg"} as={"u"} mb={"0.5vh"}>
@@ -137,24 +162,16 @@ const books = (props: Props) => {
                 <Text fontSize={"lg"} as={"u"} mb={"0.5vh"}>
                   About Book
                 </Text>
-                <Text>
-                  The Supernatural Summit is about to start at the DeVane Hotel
-                  in London. Vampires and werewolves, ghouls and gremlins, and
-                  pixies and druids have all come together to find better ways
-                  to get along with the human community and address the strict
-                  laws which govern their existence. It's a real opportunity to
-                  change the world for the better and I'm proud to be a part of
-                  it.
-                </Text>
+                <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa ducimus expedita nulla omnis hic cumque. Amet et laboriosam aliquid maiores aut atque reprehenderit dicta aliquam adipisci voluptatum doloremque hic ex unde suscipit itaque, eveniet alias harum blanditiis? Impedit facilis exercitationem maiores. Minus eaque delectus ad quia sint esse sapiente minima, cumque dolore ut voluptates, porro aperiam dicta dignissimos facere quam molestiae officia accusamus ipsa, sed nemo. Repudiandae esse, at libero sint tempora eligendi quasi eos assumenda cupiditate optio maiores inventore exercitationem facere autem molestiae quaerat? Inventore unde soluta ex nemo voluptatum velit ipsam, sunt tenetur ut quo officia sed iure odit minus, reiciendis libero ea deserunt consectetur nisi provident sit, quibusdam quia enim error. Vero, quis. Eaque aliquam quo iure a odio veritatis temporibus excepturi dicta nulla soluta assumenda labore placeat eveniet voluptatibus quisquam aspernatur fuga, ullam doloribus sed cumque.</Text>
               </Box>
               <Box mt={"2vh"}>
                 <Text fontSize={"lg"} as={"u"}>
                   Tags
                 </Text>
                 <HStack mt={"0.5vh"}>
-                  <Tag>Life</Tag>
-                  <Tag>Biography</Tag>
-                  <Tag>Insparation</Tag>
+                  {tags.map((tag) => (
+                    <Tag>{tag}</Tag>
+                  ))}
                 </HStack>
               </Box>
             </Box>
@@ -165,9 +182,7 @@ const books = (props: Props) => {
             p={"2vw"}
             m={"1vw 0"}
             boxShadow={"base"}
-            // display={"flex"}
-            // flexWrap={"wrap"}
-            flexDirection={{base: "column", md: "row", sm: "column"}}
+            flexDirection={{ base: "column", md: "row", sm: "column" }}
           >
             <Chat />
             <Reviews />

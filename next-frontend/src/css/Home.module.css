@@ -16,6 +16,7 @@
   height: 200px;
   width: 200px;
 }
+
 @keyframes circle1 {
   0% {
     top: 38vh;
@@ -30,7 +31,6 @@
     left: 7vw;
   }
 }
-
 .circle2 {
   animation-name: circle2;
   animation-duration: 20s;
@@ -55,7 +55,6 @@
     left: 45vw;
   }
 }
-
 .circle4 {
   animation-name: circle4;
   animation-duration: 8s;
@@ -69,7 +68,6 @@
   opacity: 0.2;
   background: linear-gradient(#f00, #f0f, #3f1560);
 }
-
 @keyframes circle4 {
   from {
     top: 40vh;

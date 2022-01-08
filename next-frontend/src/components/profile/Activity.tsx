@@ -6,25 +6,27 @@ interface Props {}
 
 const SideButton = (props) => {
   return (
-    <Button
-      rightIcon={<ArrowForwardIcon />}
-      colorScheme="teal"
-      variant="outline"
-      display={"block"}
-      width={"100%"}
-    >
-      <Link href={props.to}>{props.children}</Link>
-    </Button>
+    <Link href={props.to} textDecoration={"none !important"}>
+      <Button
+        rightIcon={<ArrowForwardIcon />}
+        colorScheme="teal"
+        variant="outline"
+        display={"block"}
+        width={"100%"}
+      >
+        {props.children}
+      </Button>
+    </Link>
   );
 };
 
 const Activity = (props: Props) => {
   return (
-    <Box border={"2px solid purple"}>
+    <Box>
       {/* For Activity */}
       <Box>
         <SideButton to="/profile">Daily Activity</SideButton>
-        <SideButton to="/profile/follow">Followers(0)</SideButton>
+        <SideButton to="/profile/follow">Followers</SideButton>
         <SideButton to="/profile/notes">Notes</SideButton>
         <SideButton to="/#">Currently Reading</SideButton>
         <SideButton to="/#">Want To Read</SideButton>
