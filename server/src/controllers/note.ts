@@ -18,7 +18,9 @@ export const getNotes = async (req: express.Request, res: express.Response) => {
     return res.send(custom_response(0, true, "user must be logged in", {}));
   }
 
-  const notes = await NoteSchema.find({ userId: isAuth.userId });
+  const notes = await NoteSchema.find({ userId: isAuth.userId }).populate(
+    "BookGlobal"
+  );
 
   if (!notes) {
     return res.send(custom_response(0, true, "Notes not found", {}));
@@ -31,7 +33,7 @@ export const setNotes = async (req: express.Request, res: express.Response) => {
   // get boot_id and note from body
   const { bookId, note } = req.body;
 
-  console.log(req.body)
+  console.log(req.body);
 
   const isAuth = checkAuth(req.headers.authorization);
   if (isAuth.error) {

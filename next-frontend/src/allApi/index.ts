@@ -45,7 +45,7 @@ export const get_all_books = async () => {
       Accept: "application/json",
     },
   });
-  
+
   return res.json();
 };
 
@@ -53,7 +53,7 @@ export const set_book_page_api = async (body: {
   pages: number;
   bookId: string;
 }) => {
-  console.log(body.pages, body.bookId)
+  console.log(body.pages, body.bookId);
   const token = localStorage.getItem("token");
   const res = await fetch(`${API}/setReadPages`, {
     method: "POST",
@@ -157,6 +157,16 @@ export const get_note_api = async () => {
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.json();
+};
+
+export const get_read_pages = async ({ user_id, book_id }) => {
+  const res = await fetch(`${API}/getReadPages/${user_id}/${book_id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
     },
   });
   return res.json();
