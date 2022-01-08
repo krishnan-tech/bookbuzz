@@ -1,5 +1,7 @@
 import { Box, Text, Button, Center } from "@chakra-ui/react";
-import React from "react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { get_note_api, get_single_book } from "../../allApi";
 import { Container } from "../../components/Container";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
@@ -7,6 +9,23 @@ import NavBar from "../../components/NavBar";
 interface Props {}
 
 const notes = (props: Props) => {
+  const [allNotes, setAllNotes] = useState([]);
+
+  useEffect(() => {
+    async function fetchMyAPI() {
+      let get_all_notes = await get_note_api();
+
+      // get_all_notes.data.map(async (val, i) => {
+      //   let _id = await get_single_book(val.bookId);
+      //   val.book_data = _id.data;
+      // });
+
+      setAllNotes(get_all_notes.data);
+    }
+
+    fetchMyAPI();
+  }, []);
+
   return (
     <Box>
       <NavBar />
@@ -18,7 +37,7 @@ const notes = (props: Props) => {
           justifyContent={"center"}
           flexWrap={"wrap"}
         >
-          {[1, 2, 3, 4, 5, 6].map((index) => (
+          {allNotes.map((index) => (
             <Box
               key={index}
               border={"1px solid black"}
@@ -33,12 +52,7 @@ const notes = (props: Props) => {
               boxShadow="lg"
             >
               <Center fontSize="4xl">Title</Center>
-              <Text>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam in
-                maiores dolorum corporis at quidem quibusdam totam nemo harum
-                adipisci? Lorem ipsum dolor sit amet consectetur adipisicing
-                Lorem ipsum dolor, sit amet. Lorem, ipsum.
-              </Text>
+              <Text>{index.note}</Text>
               <Box>
                 <Button colorScheme="teal" size="sm" m={"0 1vw 0 0"}>
                   Edit
@@ -61,9 +75,19 @@ const notes = (props: Props) => {
             justifyContent={"space-around"}
             boxShadow="lg"
           >
-            <Button colorScheme="teal" variant="outline">
-              Add New Note
-            </Button>
+            {allNotes.length != 0 ? (
+              <Link href={`/profile/notes/${allNotes[0].bookId}`}>
+                <Button colorScheme="teal" variant="outline">
+                  Add New Note
+                </Button>
+              </Link>
+            ) : (
+              <Link href={`/books`}>
+                <Button colorScheme="teal" variant="outline">
+                  Add New Note
+                </Button>
+              </Link>
+            )}
           </Box>
         </Box>
       </Container>
