@@ -217,6 +217,7 @@ const Graph = (props: Props) => {
                     <Input
                       id="amount"
                       onChange={(e) => set_pages(Number(e.target.value))}
+                      placeholder="10"
                     />
                   </NumberInput>
                   <Button colorScheme="teal" size="md" onClick={SubmitPages}>

@@ -48,7 +48,7 @@ const Reviews = (props: Props) => {
       </Box>
       {data ? (
         data.map((value, index) => (
-          <Review name={"Bob"} key={index}>
+          <Review name={"krishnan"} key={index}>
             {value.review}
           </Review>
         ))

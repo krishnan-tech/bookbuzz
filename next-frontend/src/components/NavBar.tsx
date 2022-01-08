@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import Router from "next/router";
 import { ReactNode, useEffect, useState } from "react";
-import logo from '../images/logo.png'
+import logo from "../images/logo.png";
 import Image from "next/image";
 
 const NavLink = ({ children }: { children: ReactNode }) => (
@@ -53,12 +53,23 @@ export default function NavBar() {
     <>
       <Box bg={useColorModeValue("gray.100", "black")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box>
-            <Image src={logo} width={"27px"} height={"27px"} />
-            <Link href="/" textDecoration={"none"} textDecor={"none"}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Image src={logo} width={"50px"} height={"50px"} />
+            <Link
+              href="/"
+              textDecoration={"none"}
+              textDecor={"none"}
+              fontSize={"30px"}
+            >
               BookBuzz
             </Link>
-          </Box>
+          </div>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
