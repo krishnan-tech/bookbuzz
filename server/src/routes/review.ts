@@ -3,7 +3,7 @@ const router = express.Router();
 
 import { getReview, setReview } from "../controllers/review";
 
-router.get("/getReview", getReview);
+router.get("/getReview/:bookId", getReview);
 router.post("/setReview", setReview);
 
 module.exports = router;

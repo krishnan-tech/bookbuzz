@@ -11,17 +11,22 @@ export const getReview = async (
   res: express.Response
 ) => {
   // get user id from token for reviews
-  const isAuth = checkAuth(req.headers.authorization);
-  if (isAuth.error) {
-    return res.send(
-      custom_response(0, true, "An error has occured", isAuth.error)
-    );
-  }
-  if (!isAuth.userId) {
-    return res.send(custom_response(0, true, "user must be logged in", {}));
-  }
+  // const isAuth = checkAuth(req.headers.authorization);
+  // if (isAuth.error) {
+  //   return res.send(
+  //     custom_response(0, true, "An error has occured", isAuth.error)
+  //   );
+  // }
+  // if (!isAuth.userId) {
+  //   return res.send(custom_response(0, true, "user must be logged in", {}));
+  // }
 
-  const reviews = await ReviewSchema.find({ userId: isAuth.userId });
+  // const reviews = await ReviewSchema.find({ userId: isAuth.userId });
+
+  // --------- New Added -------------
+  const { bookId } = req.params;
+  const reviews = await ReviewSchema.find({ bookId: bookId });
+  // --------- New Added -------------
 
   if (!reviews) {
     return res.send(custom_response(0, true, "No Reviews", {}));
@@ -35,7 +40,7 @@ export const setReview = async (
   res: express.Response
 ) => {
   // get boot_id and note from body
-  const { book_id, review, star } = req.body;
+  const { bookId, review, star } = req.body;
 
   const isAuth = checkAuth(req.headers.authorization);
   if (isAuth.error) {
@@ -54,7 +59,7 @@ export const setReview = async (
   }
 
   const new_review = new ReviewSchema({
-    bookId: ObjectId(book_id),
+    bookId: ObjectId(bookId),
     userId: ObjectId(isAuth.userId),
     review: review,
     star: star,
