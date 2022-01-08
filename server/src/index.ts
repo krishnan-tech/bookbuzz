@@ -29,7 +29,6 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const profileRoutes = require("./routes/profile");
 const bookRoutes = require("./routes/book");
-const bookPersonalRoutes = require("./routes/bookPersonal");
 const noteRoutes = require("./routes/notes");
 const reviewRoutes = require("./routes/review");
 
@@ -38,7 +37,6 @@ app.use("/api", authRoutes);
 app.use("/api", adminRoutes);
 app.use("/api", profileRoutes);
 app.use("/api", bookRoutes);
-app.use("/api", bookPersonalRoutes);
 app.use("/api", noteRoutes);
 app.use("/api", reviewRoutes);
 

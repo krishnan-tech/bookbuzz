@@ -8,12 +8,10 @@ export interface BookPersonal extends Document {
   isPublic: boolean;
   book: string;
   notes: NoteSchema;
-  read_pages: [
-    {
-      date: Date;
-      page: number;
-    }
-  ];
+  read_pages: {
+    date: Date;
+    page: number;
+  };
   createdAt: string;
   updatedAt: string;
 }
@@ -28,22 +26,14 @@ const bookPersonalSchema: Schema = new Schema(
       type: ObjectId,
       ref: "BookGlobal",
     },
-    user: {
+    notes: {
       type: ObjectId,
-      ref: "User",
+      ref: "Note",
     },
-    notes: [
-      {
-        type: ObjectId,
-        ref: "Note",
-      },
-    ],
-    read_pages: [
-      {
-        date: Date,
-        page: Number,
-      },
-    ],
+    read_pages: {
+      date: Date,
+      page: Number,
+    },
   },
   { timestamps: true }
 );

@@ -1,7 +1,6 @@
-import { Flex, Box, useColorModeValue, Center } from "@chakra-ui/react";
-import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
-import book_cover_photo from "../../images/book_cover_photo.jpg";
+import { Box, Center, useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
+import book_cover_photo from "../../images/book_cover_photo.jpg";
 
 const data = {
   isNew: true,
@@ -13,48 +12,23 @@ const data = {
   numReviews: 34,
 };
 
-interface RatingProps {
-  rating: number;
-  numReviews: number;
-}
-
-function Rating({ rating, numReviews }: RatingProps) {
+const ProductAddToCart = () => {
   return (
-    <Box d="flex" alignItems="center">
-      {Array(5)
-        .fill("")
-        .map((_, i) => {
-          const roundedRating = Math.round(rating * 2) / 2;
-          if (roundedRating - i >= 1) {
-            return (
-              <BsStarFill
-                key={i}
-                color={i < rating ? "teal.500" : "gray.300"}
-              />
-            );
-          }
-          if (roundedRating - i === 0.5) {
-            return <BsStarHalf key={i} />;
-          }
-          return <BsStar key={i} />;
-        })}
-      <Box as="span" ml="2" color="gray.600" fontSize="sm">
-        {numReviews} review{numReviews > 1 && "s"}
-      </Box>
-    </Box>
-  );
-}
-
-function ProductAddToCart() {
-  return (
-    <Flex p={50} w="300px" alignItems="center" justifyContent="center">
+    <Box
+      float={"left"}
+      w={["70vw", "40vw", "20vw"]}
+      border={"3px solid green"}
+      display={"flex"}
+      justifyContent={"center"}
+    >
       <Box
         bg={useColorModeValue("white", "gray.800")}
         maxW="sm"
         borderWidth="1px"
         rounded="lg"
         shadow="xl"
-        position="relative"
+        margin={"2vh 3vh 2vh 3vh"}
+        border={"2px solid orange"}
       >
         <Box p={5} pb={3}>
           <Image src={data.imageURL} alt={`Picture of ${data.bookName}`} />
@@ -84,14 +58,10 @@ function ProductAddToCart() {
               {data.authorName}
             </Box>
           </Center>
-
-          {/* <Flex pt={2} justifyContent="space-between" alignContent="center">
-            <Rating rating={data.rating} numReviews={data.numReviews} />
-          </Flex> */}
         </Box>
       </Box>
-    </Flex>
+    </Box>
   );
-}
+};
 
 export default ProductAddToCart;

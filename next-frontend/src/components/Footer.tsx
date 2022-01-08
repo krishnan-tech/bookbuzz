@@ -2,18 +2,18 @@ import {
   Box,
   chakra,
   Container,
+  IconButton,
+  Input,
   Link,
   SimpleGrid,
   Stack,
   Text,
-  VisuallyHidden,
-  Input,
-  IconButton,
   useColorModeValue,
+  VisuallyHidden,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
+import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Logo = (props: any) => {
   return (
@@ -78,7 +78,7 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 export default function Footer() {
   return (
     <Box
-      bg={useColorModeValue("gray.100", "gray.800")}
+      bg={useColorModeValue("gray.200", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
     >
       <Container as={Stack} maxW={"6xl"} py={10}>

@@ -13,14 +13,14 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import Nav from "../components/NavBar";
+import NavBar from "../components/NavBar";
 
 interface loginProps {}
 
 export const login: React.FC<loginProps> = ({}) => {
   return (
     <Box>
-      <Nav />
+      <NavBar />
       <Flex
         align={"center"}
         justify={"center"}

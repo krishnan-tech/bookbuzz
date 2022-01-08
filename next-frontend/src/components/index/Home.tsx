@@ -1,42 +1,27 @@
 import { Box } from "@chakra-ui/react";
-import { ReadingBoy } from "./ReadingBoy";
 import ProductAddToCart from "./Card";
-import { Flex, Spacer } from "@chakra-ui/react";
+import Middle from "./Middle";
+import { ReadingBoy } from "./ReadingBoy";
 
 export const Home = () => {
   return (
-    <Box mt={10}>
+    <Box>
       <ReadingBoy />
-      <Flex>
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-      </Flex>
-      <Flex>
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-      </Flex>
-      <Flex>
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-      </Flex>
-      <Flex>
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-      </Flex>
-      <Flex>
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-        <ProductAddToCart />
-      </Flex>
+      <Middle />
+      <Box
+        border={"3px solid yellow"}
+        overflow={"hidden"}
+        display={"flex"}
+        justifyContent={"space-around"}
+        flexDirection={"row"}
+        flexWrap={"wrap"}
+      >
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(() => (
+          <Box mb="20px">
+            <ProductAddToCart />
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 };

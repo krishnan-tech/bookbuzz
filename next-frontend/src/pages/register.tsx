@@ -17,7 +17,7 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import React from "react";
-import Nav from "../components/NavBar";
+import NavBar from "../components/NavBar";
 
 interface registerProps {}
 
@@ -25,7 +25,7 @@ export const register: React.FC<registerProps> = ({}) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <Box>
-      <Nav />
+      <NavBar />
       <Flex
         align={"center"}
         justify={"center"}

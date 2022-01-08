@@ -59,10 +59,7 @@ export const profile = async (req: express.Request, res: express.Response) => {
   );
 };
 
-export const friends = async (
-  _req: express.Request,
-  _res: express.Response
-) => {
+export const friends = async (req: express.Request, res: express.Response) => {
   // user1 user_id from token
   // user2 id from req.body
   // add to user.ts in friends array.

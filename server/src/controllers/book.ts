@@ -1,9 +1,6 @@
 import express from "express";
 import { custom_response } from "../utils/response";
 import BookGlobalSchema, { BookGlobalSchemaType } from "../models/BookGlobal";
-import BookGlobal from "../models/BookGlobal";
-import { checkAuth } from "../utils/checkAuth";
-import User from "../models/User";
 
 export const book = async (req: express.Request, res: express.Response) => {
   // what we get from frontend -> book_id
@@ -45,44 +42,18 @@ export const book = async (req: express.Request, res: express.Response) => {
       updatedAt,
     })
   );
-};
-
-export const getAllBooks = async (
-  _req: express.Request,
-  res: express.Response
-) => {
-  const books = await BookGlobal.find();
-  return res.send(custom_response(1, false, "", books));
-};
-export const addToCurrentReading = async (
-  req: express.Request,
-  res: express.Response
-) => {
-  const { addToCurrentReading } = req.body;
-
-  const isAuth = checkAuth(req.headers.authorization);
-  if (isAuth.error) {
-    return res.send(
-      custom_response(0, true, "An error has occured", isAuth.error)
-    );
-  }
-  if (!isAuth.userId) {
-    return res.send(custom_response(0, true, "user must be logged in", {}));
-  }
-
-  if (!addToCurrentReading) {
-    return res.send(custom_response(0, true, "book id is missing!", {}));
-  }
-
-  const new_data = await User.findOneAndUpdate(
-    { _id: isAuth.userId },
-    {
-      $push: {
-        currentReading: addToCurrentReading,
-      },
-    },
-    { new: true }
-  );
-
-  return res.send(custom_response(1, false, "", new_data));
+  //
+  // fetch user_id book_id from DB get all details and send it as response
+  //   return {
+  //     book_id,
+  //     book_name,
+  //     author_name,
+  //     rating,
+  //     description,
+  //     tags,
+  //     reviews,
+  //     amazon_link,
+  //     created_date,
+  //     updated_date,
+  //   }
 };

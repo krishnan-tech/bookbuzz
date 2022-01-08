@@ -35,10 +35,7 @@ export const setReview = async (
   res: express.Response
 ) => {
   // get boot_id and note from body
-  const { bookId, review, star } = req.body;
-  
-  console.log(req.body)
-  console.log(bookId, review, star)
+  const { book_id, review, star } = req.body;
 
   const isAuth = checkAuth(req.headers.authorization);
   if (isAuth.error) {
@@ -57,7 +54,7 @@ export const setReview = async (
   }
 
   const new_review = new ReviewSchema({
-    bookId: ObjectId(bookId),
+    bookId: ObjectId(book_id),
     userId: ObjectId(isAuth.userId),
     review: review,
     star: star,

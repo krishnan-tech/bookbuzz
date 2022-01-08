@@ -24,7 +24,6 @@ export const signup = async (req: express.Request, res: express.Response) => {
   }
 };
 
-// @ts-ignore
 export const signin = (req: express.Request, res: express.Response) => {
   // find the user based on email
   var { email, password } = req.body;
