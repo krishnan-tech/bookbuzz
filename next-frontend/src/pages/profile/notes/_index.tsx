@@ -1,10 +1,9 @@
-import { Box, Text, Button, Center } from "@chakra-ui/react";
+import { Box, Text, Button, Center, Container } from "@chakra-ui/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { get_note_api, get_single_book } from "../../allApi";
-import { Container } from "../../components/Container";
-import Footer from "../../components/Footer";
-import NavBar from "../../components/NavBar";
+import { get_note_api } from "../../../allApi";
+import Footer from "../../../components/Footer";
+import NavBar from "../../../components/NavBar";
 
 interface Props {}
 

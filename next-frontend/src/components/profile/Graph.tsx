@@ -171,10 +171,7 @@ const Graph = (props: Props) => {
           p={6}
           overflow={"hidden"}
         >
-          <Stack
-            justifyContent={"space-around"}
-            height={"100%"}
-          >
+          <Stack justifyContent={"space-around"} height={"100%"}>
             <Box>
               <Text
                 color={"green.500"}
@@ -198,8 +195,8 @@ const Graph = (props: Props) => {
                 justifyContent={"space-around"}
                 rounded="lg"
               >
-                <TOP>{no_of_days} of Days Streek</TOP>
-                <TOP>{no_of_max_days} of Max Days Streek</TOP>
+                <TOP>{no_of_days} of Days Streak</TOP>
+                <TOP>{no_of_max_days} of Max Days Streak</TOP>
                 <TOP>{no_of_friends} of Friends</TOP>
               </SimpleGrid>
             </Box>

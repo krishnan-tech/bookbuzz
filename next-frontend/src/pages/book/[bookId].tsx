@@ -21,7 +21,7 @@ import Reviews from "../../components/books/Reviews";
 import { Container } from "../../components/Container";
 import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
-import htwaip from '../../images/htwaip.jpg'
+import htwaip from "../../images/htwaip.jpg";
 
 interface Props {}
 
@@ -75,7 +75,7 @@ export const SingleBook: React.FC<Props> = ({}) => {
 
     const addToCurrentReading = bookId;
     const body = {
-      addToCurrentReading
+      addToCurrentReading,
     };
     const user = await add_to_current_reading_api(body);
 
@@ -116,6 +116,7 @@ export const SingleBook: React.FC<Props> = ({}) => {
               >
                 <Center mb={"2vh"}>
                   <Image
+                    // @ts-ignore
                     boxSize={{ base: "50vw", md: "15vw", sm: "20vw" }}
                     width={"200vw"}
                     height={"280vh"}

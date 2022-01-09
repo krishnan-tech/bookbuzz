@@ -17,12 +17,12 @@ const Middle = (props: Props) => {
       m={"5vh 0"}
       p={"0 10%"}
       boxShadow={"xl"}
-      >
+    >
       <Heading
         fontSize={{ base: "25px", md: "30px", lg: "35px" }}
         style={light_yellow}
       >
-        I offten feel sorry for people who don't read good books.
+        I often feel sorry for people who don't read good books.
       </Heading>
       <Text fontSize={{ base: "16px", md: "18px", lg: "22px" }}>
         I don't like the idea of a book being a test or being used for a test.
