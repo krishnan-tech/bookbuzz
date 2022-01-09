@@ -1,5 +1,3 @@
-# BookBuzz
-
 <h1 align="center">BookBuzz</h1>
 <h6 align="center">BookBuzz - where you get motivated to read books.</h6>
 
