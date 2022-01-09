@@ -31,8 +31,13 @@
 This is the final submission for DotSlash 5.0 Hackathon.
 </p>
 
+<p>
 Link of the hackathon: https://dotslash-1.devfolio.co/
+</p>
+
+<p>
 Link of the project: https://devfolio.co/submissions/bookbuzz-a521
+</p>
 
 <hr />
 
