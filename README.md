@@ -73,4 +73,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Join Me
 
-I am actively developing cool projects, let's connect on discord to build it together: https://discord.gg/fGqbRjPyUp
+I am actively developing cool projects, let's connect on discord to build it together: https://discord.gg/NFJP6tjt2u
